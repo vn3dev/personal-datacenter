@@ -19,9 +19,13 @@ srv-web -> postreSQL 5432 -> srv-data
 VMs -> internet via NAT
 
 portas v1:
-22/tcp SSH: host -> VMs
+22/tcp SSH: host -> VMs pela LAN
 80/tcp SSH: host -> srv-web
 5432/tcp PostreSQL: srv-web/srv-core -> srv-data APENAS LAN
 
+### sem roteador/firewall dedicado na LAN nessa versão
+
 implementações futuras:
 pfSense
+talvez DHCP + reserva na LAN
+bastion host
