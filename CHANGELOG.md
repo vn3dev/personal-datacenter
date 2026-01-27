@@ -1,0 +1,1 @@
+para documentar mudanças no projeto conforme o projeto for evoluindo
