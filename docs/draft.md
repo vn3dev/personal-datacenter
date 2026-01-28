@@ -63,8 +63,46 @@ sudo cat /etc/iptables/rules.v4
 
 ### consegui inicializar o srv-core desfazendo as regras. Ainda estou trabalhando na solução definitiva, talvez tenha que buscar conhecimentos em pfSense mais cedo que esperado. Decidi fazer o SSH por enquanto, aplicando as regras manualmente no srv-core para testar.
 
-* no srv-core
+* no srv-core, atualizar a lista de pacotes e instalar ssh
 sudo apt update
+* porta 22
 sudo apt install openssh-server
+
+* continua apos o reboot
 sudo systemctl enable ssh
 sudo systemctl start ssh
+sudo systemctl status ssh
+* ver o ip MGMT, provavelmente 192.168.56.102
+ip a
+
+* usei gitbash para acessar no windows, acho que por powershell funciona também. talvez o comando seja diferente.
+ssh labadmin@IP
+
+* ssh de senha para chave:
+* se ja nn tiver uma ssh key, gere uma no gitpash ou pshell
+ssh-keygen
+* de enter para manter o diretorio padrao
+* escolha uma passphrase e pronto
+
+* para ver os arquivos criados, confirme que os arquivos foram criados
+ls ~/.ssh
+
+* comando para copiar o id.pub e inserir a chave no authorized_keys direto no servidor
+ssh-copy-id labadmin@ip
+* colocar a senha de acesso pela ultima vez, agora teste se consegue conectar usando a passphrase em vez de senha:
+ssh labadmin@ip
+* depois de ter acesso sem utilizar a senha, vamos desabilita-la para evitar ataques de brute force e aumentar a segurança do nosso servidor
+
+* NO SERVIDOR:
+sudo nano /etc/ssh/sshd_config
+* procure pelas linhas uma de cada vez: CTRL + W para barra de busca
+#PasswordAuthentication yes
+#PermitRootLogin prohibit-password
+#PubkeyAuthentication yes
+* descomente e altere os valores, deve ficar assim: n esqueça de descomentar!!!
+PasswordAuthentication no
+PermitRootLogin no
+PubkeyAuthentication yes
+* pronto, agora tente acessar novamente no gitbash ou pshell. Se entrar direto sem pedir login do servidor, deu certo
+
+### pesquisar sobre bastion host e ssh agent forwarding
