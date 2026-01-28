@@ -58,3 +58,13 @@ ls -l /etc/iptables/rules.v4
 sudo cat /etc/iptables/rules.v4
 
 ### enfrentei um problema tentando deixar a config dos ip tables permanentes. Quando fiz o reboot, meu sistema congelou quando estava inicializando os drivers. O sistema estava usando recursos e parecia estar ativo mas não tive resposta até apertar enter. Fui jogado para um log com o crash e estou analisando possiveis soluções. No pior dos casos vou dar reboot no modo recovery e tentar desabilitar o carregamento automatico do netfilter-persistent e reverter regras de iptables/forwarding
+
+[28/01/2026]
+
+### consegui inicializar o srv-core desfazendo as regras. Ainda estou trabalhando na solução definitiva, talvez tenha que buscar conhecimentos em pfSense mais cedo que esperado. Decidi fazer o SSH por enquanto, aplicando as regras manualmente no srv-core para testar.
+
+* no srv-core
+sudo apt update
+sudo apt install openssh-server
+sudo systemctl enable ssh
+sudo systemctl start ssh
