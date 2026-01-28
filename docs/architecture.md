@@ -11,3 +11,20 @@ tooling: WSL2
 
 root via ssh desabilitado
 ips fixos na LAN
+
+srv-core (ou bastion / base)
+acesso administrativo
+ponto inicial de gestão
+SSH, documentação, automação futura
+
+srv-app
+servidor de aplicação
+nginx
+serviços que podem escalar
+IP pode ser dinâmico
+
+srv-db
+banco de dados
+PostgreSQL
+IP fixo
+acesso restrito

@@ -16,8 +16,8 @@
 | VM       | SO            | Função     | vCPU | RAM | Disco | NICs           | IP (LAN)      | Serviços (v1)             |
 |----------|---------------|------------|-----:|----:|------:|----------------|---------------|---------------------------|
 | srv-core | ubuntu server | Admin      | 2    | 2GB | 40GB  | NAT + LAB_LAN  | 10.10.10.10   | SSH                       |
-| srv-web  | ubuntu server | Web        | 2    | 2GB | 40GB  | NAT + LAB_LAN  | 10.10.10.20   | SSH, Nginx (80/tcp)       |
-| srv-data | ubuntu server | Database   | 2    | 4GB | 60GB  | NAT + LAB_LAN  | 10.10.10.30   | SSH, PostgreSQL (5432/tcp)|
+| srv-web  | ubuntu server | Web        | 2    | 2GB | 40GB  | LAB_LAN        | 10.10.10.20   | SSH, Nginx (80/tcp)       |
+| srv-data | ubuntu server | Database   | 2    | 4GB | 60GB  | LAB_LAN        | 10.10.10.30   | SSH, PostgreSQL (5432/tcp)|
 
 ## backups
 - pasta no host: C:\homelab\backups\
