@@ -1,4 +1,4 @@
-
+[27/01/2026]
 
 sudo nano /etc/netplan/00-installer-config.yaml
 * abre o arquivo para configurar as redes do ubuntu com editor de texto como super user. O arquivo e o diretorio variam dependendo da distro linux. Debian por exemplo é: /etc/network/interfaces
@@ -50,3 +50,11 @@ sudo iptables -A FORWARD -i enp0s8 -o enp0s3 -j ACCEPT
 * --state RELATED,ESTABLISHED define que só aceita pacotes se eles ja tiverem sido estabelecidos por dentro da LAN, RELATED para pacotes relacionados a uma conexão existente.
 * -j ACCEPT para permitir
 sudo iptables -A FORWARD -i enp0s3 -o enp0s8 -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+sudo apt update
+sudo apt install iptables-persistent
+* comando de save para depois >>>> sudo iptables-save > /etc/iptables/rules.v4
+ls -l /etc/iptables/rules.v4
+sudo cat /etc/iptables/rules.v4
+
+### enfrentei um problema tentando deixar a config dos ip tables permanentes. Quando fiz o reboot, meu sistema congelou quando estava inicializando os drivers. O sistema estava usando recursos e parecia estar ativo mas não tive resposta até apertar enter. Fui jogado para um log com o crash e estou analisando possiveis soluções. No pior dos casos vou dar reboot no modo recovery e tentar desabilitar o carregamento automatico do netfilter-persistent e reverter regras de iptables/forwarding

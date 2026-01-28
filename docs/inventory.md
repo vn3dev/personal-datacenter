@@ -1,3 +1,5 @@
+[27/01/2026]
+
 # inventario (v1)
 
 ## host
